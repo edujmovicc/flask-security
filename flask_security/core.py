@@ -226,13 +226,18 @@ def _get_login_manager(app, anonymous_user):
     lm.token_loader(_token_loader)
 
     if cv('FLASH_MESSAGES', app=app):
+        print("flash messages esta activo")
         lm.login_message, lm.login_message_category = cv('MSG_LOGIN', app=app)
+        print("message: {}".format(lm.login_message))
         lm.needs_refresh_message, lm.needs_refresh_message_category = cv('MSG_REFRESH', app=app)
     else:
+        print("flash messages no esta activo")
         lm.login_message = None
         lm.needs_refresh_message = None
 
     lm.init_app(app)
+    print(lm)
+    print(lm.__dict__)
     return lm
 
 
